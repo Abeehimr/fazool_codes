@@ -1,0 +1,24 @@
+h = int(input('h'))
+b = int(input("b"))
+i = 1
+j = 0
+while i <= h*b:
+    if i < b or i > h*b + 1 - b:
+        print("*",end= "")
+    elif i % b == 0:
+        print("*")
+        j = 0
+    elif i % b == 1:
+        if j == 0:
+            s = i // b 
+        if s > 0:
+            print(" ",end= "")
+            s-=1
+            j = 1
+            continue
+            
+        print("*",end= "")       
+    else:
+        print(" ",end= "")
+    i += 1
+  
