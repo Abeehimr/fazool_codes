@@ -1,0 +1,67 @@
+l1 = list("Paradox, You believe you're in control, solving puzzles and catching criminals. But every move you make is just another step in my game. The real game is about to begin. Let's see if you can keep up.".upper())
+l2 = list("You must be thinking that I am dead, that you have won the game. How foolish of you! I am the one who set the trap, and you fell right into it. But I will give you a chance, Paradox. A chance to prove yourself. A chance to face me once and for all. Look closely, and you will find me.".upper())
+m = 'you are final move'.upper()
+
+def main():
+    global l1,l2,m
+    d1 = []
+    d2 = []
+    f1 = True
+    f2 = True
+    i,j = 0,0
+    a ,b = 0,0
+    
+
+    for msg in m:
+        
+        if msg in l1[i+a:]:
+            a += l1[i+a:].index(msg)
+            
+        else:
+            d1.append(-2)
+            f1 = False
+
+        if msg in l2[j+b:]:
+            b += l2[j+b:].index(msg)
+
+        else:
+            d2.append(-2)
+            f2 = False
+        
+        if msg == " ":
+            i += a + 1
+            j += b + 1
+            l1[i-1] = "\n"
+            l2[j-1] = '\n'
+            a , b = 0 , 0
+            continue
+
+        if a < b:
+            b = a
+            d1.append(a)
+            d2.append(-1) 
+            if l1[i+a+1] != " ":
+                a+=1
+                b+=1
+            
+        else:
+            a = b   
+            d2.append(b)
+            d1.append(-1)
+            if l1[j+b+1] != " ":
+                b+=1
+                a+=1
+        a+=1
+        b+=1
+        
+    out(f1,d1,f2,d2)
+
+def out(f1,d1,f2,d2):       
+    print(''.join(l1))
+    print()
+    print(''.join(l2))
+    print(f1,d1)
+    print(f2,d2)
+
+if __name__ == '__main__':
+    main()
